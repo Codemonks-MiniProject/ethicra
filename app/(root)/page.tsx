@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Page = () => {
   return (
     <div>
-      <div className="container mx-auto px-10 flex items-center justify-between p-10 my-32">
+      <div className="container mx-auto px-10 flex items-center justify-between p-10 my-32 w-10/12">
         <div className="flex flex-col gap-6">
           <h1 className="text-7xl font-bold text-black mb-4">Take Online Interview.</h1>
           <p className="text-gray-950 text-2xl mb-2">NUMBER OF ACTIVE USERS RIGHT NOW</p>
@@ -22,7 +22,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="bg-[#5127e8] py-24 px-16 h-[600px] overflow-visible">
+      <div className="bg-[#5127e8] py-24 px-16 h-[600px] overflow-visible w-screen">
         <div className="flex flex-col md:flex-row justify-between gap-2 md:gap-4 w-10/12 mx-auto">
           {/* Card 1: Online Assessment (Bottom) */}
           <div className="text-center text-white p-6 bg-[#a1d4a3] w-full md:w-[300px] h-[350px] flex flex-col justify-center items-center mt-52 shadow-md transition-all duration-300 transform-gpu hover:scale-105 hover:shadow-lg">
