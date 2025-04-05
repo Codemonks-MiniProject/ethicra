@@ -12,14 +12,14 @@ const Navbar = () => {
 
     return (
         <nav className="bg-white p-4">
-            <div className="container mx-auto flex justify-between items-center">
+            <div className="container mx-auto flex justify-between items-center px-9">
                 <Link href={'/'} className="text-2xl font-bold">
                     Logo
                 </Link>
                 <div className="flex items-center space-x-6">
                     <Link
                         href={'/'}
-                        className={`text-[#4724c7] relative ${activeTab === '/' ? '' : ''
+                        className={`text-[#5D5A88] relative ${activeTab === '/' ? '' : ''
                             }`}
                         onClick={() => handleTabClick('/')}
                     >
@@ -30,7 +30,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         href={'/about'}
-                        className={`text-[#4724c7] relative ${activeTab === '/about' ? '' : ''
+                        className={`text-[#5D5A88] relative ${activeTab === '/about' ? '' : ''
                             }`}
                         onClick={() => handleTabClick('/about')}
                     >
@@ -41,7 +41,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                         href={'/contact'}
-                        className={`text-[#4724c7] relative ${activeTab === '/contact' ? '' : ''
+                        className={`text-[#5D5A88] relative ${activeTab === '/contact' ? '' : ''
                             }`}
                         onClick={() => handleTabClick('/contact')}
                     >
@@ -52,14 +52,14 @@ const Navbar = () => {
                     </Link>
                     <Link
                         href={'/login'}
-                        className="border border-gray-300 rounded-md px-4 py-2 text-[#4724c7]"
+                        className="border border-gray-300 rounded-md px-4 py-2 text-[#5D5A88]"
                         onClick={() => handleTabClick('/login')}
                     >
                         Login
                     </Link>
                     <Link
                         href={'/sign-up'}
-                        className="bg-blue-600 text-white rounded-md px-4 py-2"
+                        className="bg-[#4A3AFF] text-white rounded-md px-4 py-2"
                         onClick={() => handleTabClick('/sign-up')}
                     >
                         Get Started
