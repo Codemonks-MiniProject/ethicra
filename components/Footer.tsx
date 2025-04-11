@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
         <div className="flex flex-col items-end w-2/5">
-          <Link href="/register" className="bg-[#4A3AFF] text-white py-2 px-5 rounded mb-2 w-[130px] h-[40px] flex items-center justify-center">Register</Link>
+          <Link href="/sign-up" className="bg-[#4A3AFF] text-white py-2 px-5 rounded mb-2 w-[130px] h-[40px] flex items-center justify-center">Register</Link>
           <Link href="/login" className="border border-[#4A3AFF] text-[#4A3AFF] py-2 px-5 rounded mb-2 w-[130px] h-[40px] flex items-center justify-center">Log in</Link>
           <Link href="/admin" className="border border-[#4A3AFF] text-[#4A3AFF] py-2 px-5 rounded w-[130px] h-[40px] flex items-center justify-center">ADMIN</Link>
         </div>

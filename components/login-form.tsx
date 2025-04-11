@@ -31,7 +31,7 @@ export function LoginForm({
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Logged in with email/password");
-      router.push('/'); // Replace '/dashboard' with your protected route
+      router.push('/dashboard'); // Replace '/dashboard' with your protected route
     } catch (error: any) {
       console.error("Login error:", error);
       setError(error.message);

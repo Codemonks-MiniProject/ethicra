@@ -1,20 +1,46 @@
-import React from 'react';
+"use client";
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Page = () => {
+  const [userCount, setUserCount] = useState<number | null>(null); // Initialize as null
+
+  useEffect(() => {
+    const fetchUserCount = async () => {
+      try {
+        const response = await fetch('/api/getRegisteredUserCount');
+        if (response.ok) {
+          const data = await response.json();
+          setUserCount(data.count);
+        } else {
+          console.error('Failed to fetch user count');
+          setUserCount(0); // Or some other default/error state
+        }
+      } catch (error) {
+        console.error('Error fetching user count:', error);
+        setUserCount(0); // Or some other default/error state
+      }
+    };
+
+    fetchUserCount();
+  }, []);
+
   return (
     <div>
-      {/* Hero Section - Unchanged */}
+      {/* Hero Section */}
       <div className="container mx-auto flex items-center justify-between p-10 my-32 w-10/12">
         <div className="flex flex-col gap-6 mx-2">
           <h1 className="text-7xl font-bold text-black mb-4">Take Online Interview.</h1>
           <p className="text-gray-950 text-2xl mt-4 mb-2">NUMBER OF ACTIVE USERS RIGHT NOW</p>
-          <p className="text-4xl text-blue-600 font-semibold mx-48">200+</p>
+          <p className="text-4xl text-blue-600 font-semibold mx-48">
+            {userCount !== null ? `${userCount}+` : 'Loading...'}
+          </p>
         </div>
         <div>
           <Image
-            src="/images/image 2.png"
+            src="/images/landingpage.jpeg"
             alt="Online interview illustration"
             width={377}
             height={320}
@@ -113,7 +139,7 @@ const Page = () => {
 
           {/* 1. Text Div */}
           <div className="mb-8 md:mb-12">
-            <p className="text-[#6757C1] text-4xl md:text-[40px] font-medium  mb-4">You’re in good Hand!</p>
+            <p className="text-[#6757C1] text-4xl md:text-[40px] font-medium  mb-4">You’re in good Hand!</p>
             <p className='text-2xl md:text-[30px] leading-snug font-bold'>By choosing Ethicra, you gain a trusted career partner with a proven track record of connecting top talent with the right opportunities.</p>
           </div>
 

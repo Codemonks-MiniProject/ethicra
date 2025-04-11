@@ -38,7 +38,7 @@ export function SignupForm({
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("Signed up with email/password");
-      router.push('/'); // Replace '/dashboard' with your protected route
+      router.push('/dashboard'); // Replace '/dashboard' with your protected route
     } catch (error: any) {
       console.error("Signup error:", error);
       setError(error.message);
