@@ -1,31 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 const Page = () => {
-  const [userCount, setUserCount] = useState<number | null>(null); // Initialize as null
-
-  useEffect(() => {
-    const fetchUserCount = async () => {
-      try {
-        const response = await fetch('/api/getRegisteredUserCount');
-        if (response.ok) {
-          const data = await response.json();
-          setUserCount(data.count);
-        } else {
-          console.error('Failed to fetch user count');
-          setUserCount(0); // Or some other default/error state
-        }
-      } catch (error) {
-        console.error('Error fetching user count:', error);
-        setUserCount(0); // Or some other default/error state
-      }
-    };
-
-    fetchUserCount();
-  }, []);
 
   return (
     <div>
@@ -35,7 +13,7 @@ const Page = () => {
           <h1 className="text-7xl font-bold text-black mb-4">Take Online Interview.</h1>
           <p className="text-gray-950 text-2xl mt-4 mb-2">NUMBER OF ACTIVE USERS RIGHT NOW</p>
           <p className="text-4xl text-blue-600 font-semibold mx-48">
-            {userCount !== null ? `${userCount}+` : 'Loading...'}
+            200+
           </p>
         </div>
         <div>
@@ -96,35 +74,35 @@ const Page = () => {
         {/* Job Cards ... */}
         <div className="w-[410px] h-[305.89px] bg-[#FFF2E6] p-6 mb-4 shadow-sm transition-all duration-300 hover:shadow-lg hover:scale-105 absolute left-[44px] top-[100px]">
           <div className="w-[45px] h-[47px] rounded-full mb-4 overflow-hidden">
-            <img src="/images/remote.png" alt="Remote Jobs" className="w-full h-full object-cover" />
+            <Image src="/images/remote.png" alt="Remote Jobs" width={45} height={47} className="w-full h-full object-cover" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Remote Jobs</h3>
           <p>Work from anywhere with flexible job opportunities across various industries.</p>
         </div>
         <div className="w-[360px] h-[305.89px] bg-[#FFF2E6] p-6 mb-4 shadow-sm absolute left-[480px] top-[150px] transition-all duration-300 hover:shadow-lg hover:scale-105">
           <div className="w-[45px] h-[47px] rounded-full mb-4 overflow-hidden">
-            <img src="/images/Bank.png" alt="Banking & Finance" className="w-full h-full object-cover" />
+            <Image src="/images/Bank.png" alt="Banking & Finance" width={45} height={47} className="w-full h-full object-cover" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Banking & Finance</h3>
           <p>Explore roles in investment, fintech, and financial management.</p>
         </div>
         <div className="w-[260px] h-[305.89px] bg-white p-6 mb-4 shadow-sm absolute left-[190px] top-[420px] transition-all duration-300 hover:shadow-lg hover:scale-105">
           <div className="w-[45px] h-[47px] rounded-full mb-4 overflow-hidden">
-            <img src="/images/image-removebg-preview (3).png" alt="Internship" className="w-full h-full object-cover" />
+            <Image src="/images/image-removebg-preview (3).png" alt="Internship" width={45} height={47} className="w-full h-full object-cover" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Internship</h3>
           <p>Gain hands-on experience and kickstart your career with exciting opportunities.</p>
         </div>
         <div className="w-[260px] h-[285.36px] bg-[#FFF2E6] p-6 mb-4 shadow-sm absolute left-[480px] top-[480px] transition-all duration-300 hover:shadow-lg hover:scale-105">
           <div className="w-[45px] h-[47px] rounded-full mb-4 overflow-hidden">
-            <img src="/images/analytics.png" alt="Analytics" className="w-full h-full object-cover" />
+            <Image src="/images/analytics.png" alt="Analytics" width={45} height={47} className="w-full h-full object-cover" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Analytics</h3>
           <p>Uncover insights and drive data-informed decisions with cutting-edge analytical roles.</p>
         </div>
         <div className="w-[360px] h-[305.89px] bg-white p-6 shadow-sm absolute left-[770px] top-[480px] transition-all duration-300 hover:shadow-lg hover:scale-105">
           <div className="w-[45px] h-[47px] rounded-full mb-4 overflow-hidden">
-            <img src="/images/markating.png" alt="Marketing" className="w-full h-full object-cover" />
+            <Image src="/images/markating.png" alt="Marketing" width={45} height={47} className="w-full h-full object-cover" />
           </div>
           <h3 className="text-xl font-semibold mb-2">Marketing</h3>
           <p>Create impactful campaigns and drive brand growth with innovative marketing strategies.</p>

@@ -20,7 +20,7 @@ export function LoginForm({
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null); // State to hold error messages
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -32,9 +32,13 @@ export function LoginForm({
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Logged in with email/password");
       router.push('/dashboard'); // Replace '/dashboard' with your protected route
-    } catch (error: any) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message); // FirebaseError instance provides message
+      } else {
+        setError("An unknown error occurred."); // Generic error fallback
+      }
       console.error("Login error:", error);
-      setError(error.message);
     }
   };
 
@@ -45,9 +49,13 @@ export function LoginForm({
       await signInWithPopup(auth, provider);
       console.log("Logged in with Google");
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message); // Handle FirebaseError
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.error("Google sign-in error:", error);
-      setError(error.message);
     }
   };
 
@@ -58,9 +66,13 @@ export function LoginForm({
       await signInWithPopup(auth, provider);
       console.log("Logged in with GitHub");
       router.push('/dashboard');
-    } catch (error: any) {
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message); // Handle FirebaseError
+      } else {
+        setError("An unknown error occurred.");
+      }
       console.error("GitHub sign-in error:", error);
-      setError(error.message);
     }
   };
 

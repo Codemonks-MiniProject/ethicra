@@ -1,10 +1,9 @@
-// page.tsx (about page)
 "use client";
 import React, { useState } from 'react';
-import teamData, { TeamMember } from '../data';
+import teamData from '../data'; // Removed TeamMember import
 import { FaChevronLeft, FaChevronRight, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
-const page = () => {
+const Page = () => { // Changed from 'page' to 'Page'
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
 
   const handlePrevCard = () => {
@@ -55,4 +54,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

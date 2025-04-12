@@ -3,13 +3,13 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { app } from '@/app/firebase/firebaseConfig'; // Assuming your Firebase config is here
 
 const Navbar = () => {
     const pathname = usePathname();
     const [activeTab, setActiveTab] = useState(pathname); // Initialize with the current path
-    const [user, setUser] = useState<any>(null); // State to track logged-in user
+    const [user, setUser] = useState<User | null>(null); // State to track logged-in user
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
@@ -50,7 +50,7 @@ const Navbar = () => {
             await signOut(auth);
             console.log('User signed out');
             router.push('/'); // Redirect to home or login page after logout
-        } catch (error: any) {
+        } catch (error) {
             console.error('Error signing out:', error);
             // Handle logout error (e.g., display a message)
         }
@@ -69,8 +69,7 @@ const Navbar = () => {
                                 href={'/'}
                                 className={`text-[#5D5A88] relative ${activeTab === '/' ? '' : ''
                                     }`}
-                                onClick={() => handleTabClick('/')}
-                            >
+                                onClick={() => handleTabClick('/')}>
                                 Home
                                 {activeTab === '/' && (
                                     <div className="absolute bottom-[-5px] left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
@@ -80,8 +79,7 @@ const Navbar = () => {
                                 href={'/about'}
                                 className={`text-[#5D5A88] relative ${activeTab === '/about' ? '' : ''
                                     }`}
-                                onClick={() => handleTabClick('/about')}
-                            >
+                                onClick={() => handleTabClick('/about')}>
                                 About
                                 {activeTab === '/about' && (
                                     <div className="absolute bottom-[-5px] left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
@@ -91,8 +89,7 @@ const Navbar = () => {
                                 href={'/contact'}
                                 className={`text-[#5D5A88] relative ${activeTab === '/contact' ? '' : ''
                                     }`}
-                                onClick={() => handleTabClick('/contact')}
-                            >
+                                onClick={() => handleTabClick('/contact')}>
                                 Contact
                                 {activeTab === '/contact' && (
                                     <div className="absolute bottom-[-5px] left-[10%] w-[80%] h-[3px] bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
@@ -138,15 +135,13 @@ const Navbar = () => {
                             <Link
                                 href={'/login'}
                                 className="border border-gray-300 rounded-md px-4 py-2 text-[#5D5A88]"
-                                onClick={() => handleTabClick('/login')}
-                            >
+                                onClick={() => handleTabClick('/login')}>
                                 Login
                             </Link>
                             <Link
                                 href={'/sign-up'}
                                 className="bg-[#4A3AFF] text-white rounded-md px-4 py-2"
-                                onClick={() => handleTabClick('/sign-up')}
-                            >
+                                onClick={() => handleTabClick('/sign-up')}>
                                 Get Started
                             </Link>
                         </>

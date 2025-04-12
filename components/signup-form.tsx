@@ -13,16 +13,20 @@ import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 import { app } from "@/app/firebase/firebaseConfig";
 import { useRouter } from 'next/navigation';
 
+// Type for error message, which could either be a string or null.
+type ErrorMessage = string | null;
+
 export function SignupForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [error, setError] = useState<ErrorMessage>(null); // Error state for error messages
+
   const auth = getAuth(app);
   const router = useRouter();
 
@@ -39,9 +43,11 @@ export function SignupForm({
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("Signed up with email/password");
       router.push('/dashboard'); // Replace '/dashboard' with your protected route
-    } catch (error: any) {
-      console.error("Signup error:", error);
-      setError(error.message);
+    } catch (error: unknown) {
+      // Cast error to a Firebase-specific error object or a general error
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      console.error("Signup error:", errorMessage);
+      setError(errorMessage);
     }
   };
 
@@ -52,9 +58,10 @@ export function SignupForm({
       await signInWithPopup(auth, provider);
       console.log("Signed up with Google");
       router.push('/dashboard');
-    } catch (error: any) {
-      console.error("Google sign-in error:", error);
-      setError(error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      console.error("Google sign-in error:", errorMessage);
+      setError(errorMessage);
     }
   };
 
@@ -65,9 +72,10 @@ export function SignupForm({
       await signInWithPopup(auth, provider);
       console.log("Signed up with GitHub");
       router.push('/dashboard');
-    } catch (error: any) {
-      console.error("GitHub sign-in error:", error);
-      setError(error.message);
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+      console.error("GitHub sign-in error:", errorMessage);
+      setError(errorMessage);
     }
   };
 
