@@ -34,7 +34,7 @@ export default function RootLayout({
           <header>
             <Navbar />
           </header>
-          <main  className="bg-[#FAFAFC] w-full mt-4">
+          <main  className="bg-[#FAFAFC] w-full">
             {children} {/* Removed container mx-auto px-4 py-8 */}
           </main>
           <footer>

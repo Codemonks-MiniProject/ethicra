@@ -21,6 +21,7 @@ import {
 } from "firebase/auth";
 import { app } from "@/app/firebase/firebaseConfig";
 import { useRouter } from 'next/navigation';
+import { ensureUserDocExists } from '@/app/services/firestoreUser';
 
 // Type for error message, which could either be a string or null.
 type ErrorMessage = string | null;
@@ -71,6 +72,7 @@ export function SignupForm({
           window.localStorage.removeItem('emailForSignIn');
           console.log("Signed in with email link");
           setIsProcessingLink(false); // Done processing
+          await ensureUserDocExists();
           router.push('/dashboard'); // Redirect on success
 
         } catch (error: unknown) {
@@ -114,6 +116,7 @@ export function SignupForm({
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       console.log("Signed up with email/password");
+      await ensureUserDocExists();
       router.push('/dashboard'); // Replace '/dashboard' with your protected route
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
@@ -130,6 +133,7 @@ export function SignupForm({
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
       console.log("Signed up/in with Google");
+      await ensureUserDocExists();
       router.push('/dashboard');
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
@@ -146,6 +150,7 @@ export function SignupForm({
       const provider = new GithubAuthProvider();
       await signInWithPopup(auth, provider);
       console.log("Signed up/in with GitHub");
+      await ensureUserDocExists();
       router.push('/dashboard');
     } catch (error: unknown) {
       const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
