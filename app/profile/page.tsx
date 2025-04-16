@@ -76,7 +76,7 @@ export default function ProfilePage() {
     },
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const router = useRouter(); // Assigned but not used in the current functionality
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -129,7 +129,7 @@ export default function ProfilePage() {
       }
 
       alert("✅ Profile updated successfully!");
-    } catch (error: any) {
+    } catch (error) {
       console.error("Error updating profile:", error);
       alert("❌ Error updating profile. Please try again.");
     }
