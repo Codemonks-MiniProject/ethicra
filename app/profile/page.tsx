@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-//import { cn } from "@/lib/utils";
 
 // Country code data (ISO 3166-1 alpha-2)
 const countryCodes = [
@@ -77,7 +76,7 @@ export default function ProfilePage() {
     },
   });
   const [loading, setLoading] = useState<boolean>(true);
-  const router = useRouter();
+  const router = useRouter(); // Assigned but not used in the current functionality
 
   useEffect(() => {
     const fetchData = async () => {
@@ -175,7 +174,6 @@ export default function ProfilePage() {
                 <Select
                   value={userData.countryCode}
                   onValueChange={(value) => setUserData({ ...userData, countryCode: value })}
-
                 >
                   <SelectTrigger className="flex items-center justify-between rounded-l-md border border-r-0 border-gray-300 bg-gray-50 px-3 py-2 text-gray-500 sm:text-sm">
                     <SelectValue placeholder="Code" />
